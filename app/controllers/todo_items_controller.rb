@@ -1,5 +1,6 @@
 class TodoItemsController < ApplicationController
   before_action :require_current_user!
+  before_filter :require_item_ownership!, only: [:show, :edit, :destroy, :update]
 
   def index
     if params[:search]
@@ -58,5 +59,10 @@ class TodoItemsController < ApplicationController
 
   def todo_item_params
     params.require(:todo_item).permit(:title, :completed, :details)
+  end
+
+  def require_item_ownership!
+    return if current_user.id == TodoItem.find(params[:id]).user_id
+    redirect_to todo_items_url
   end
 end
