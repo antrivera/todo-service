@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render 'todo_items/index', locals: { filter: true }
+    render 'todo_items/index', locals: { filter: true, display_back_link: false }
   end
 
   private
