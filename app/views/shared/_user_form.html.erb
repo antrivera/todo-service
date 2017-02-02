@@ -1,0 +1,8 @@
+<% action = (type == :newuser) ? users_url : session_url %>
+<% button_text = (type == :newuser) ? "Sign Up" : "Log In" %>
+
+<%= form_for :user, url: action do |f| %>
+  <%= f.text_field :username %>
+  <%= f.password_field :password %>
+  <%= f.submit button_text %>
+<% end %>

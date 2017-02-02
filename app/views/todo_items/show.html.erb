@@ -1,7 +1,7 @@
 <h1>Todo Item Detail</h1>
 
-<%= link_to "edit", edit_todo_item_url(@todo_item) %>
 <%= link_to "delete", todo_item_url(@todo_item), method: :delete  %>
+<%= link_to "edit", edit_todo_item_url(@todo_item) %>
 
 <table>
   <tr>
@@ -12,9 +12,9 @@
     <th>Completed:</th>
     <td>
       <% if @todo_item.completed %>
-        Yes! :)
+        Yes
       <% else %>
-        No :(
+        No
       <% end %>
     </td>
   </tr>

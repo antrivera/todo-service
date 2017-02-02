@@ -7,8 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<header>
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <% if !current_user.nil? %>
+      <p>Welcome <%= current_user.username %>! </p>
+      <%= button_to "Logout", session_url, method: :delete %>
+      <% else %>
+      <%= link_to "Sign Up", new_user_url %>
+      <%= link_to "Login", new_session_url %>
+      <% end %>
+    </div>
+  </div>
+</header>
 
-<%= yield %>
+<% if flash[:errors] %>
+  <div class="errors">
+    <% flash[:errors].each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="">
+  <%= yield %>
+</div>
 
 </body>
 </html>

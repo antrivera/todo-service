@@ -1,10 +1,12 @@
 class TodoItemsController < ApplicationController
+  before_action :require_current_user!
+
   def index
     if params[:filtered]
-      @todo_items = TodoItem.where(completed: false)
+      @todo_items = TodoItem.where(completed: false, user_id: current_user.id)
       render :index, locals: { filter: false }
     else
-      @todo_items = TodoItem.all
+      @todo_items = current_user.todo_items
       render :index, locals: { filter: true }
     end
   end
@@ -14,7 +16,7 @@ class TodoItemsController < ApplicationController
   end
 
   def create
-    @todo_item = TodoItem.create(todo_item_params)
+    @todo_item = current_user.todo_items.new(todo_item_params)
 
     if @todo_item.save
       redirect_to todo_items_url

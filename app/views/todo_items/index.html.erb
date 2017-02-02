@@ -7,11 +7,12 @@
 <%= link_to "All Items", todo_items_url %>
 <% end %>
 
+<% todo_items = @todo_items ? @todo_items : current_user.todo_items %>
+
 <ul>
-  <% @todo_items.each do |item| %>
+  <% todo_items.each do |item| %>
   <li>
-    <%= item.title %>
-    <%= link_to "details", item %>
+    <%= link_to item.title, item %>
   </li>
   <% end %>
 </ul>

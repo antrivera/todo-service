@@ -1,0 +1,16 @@
+<h1> <%= @user.username %> Todo List </h1>
+
+<% if @user == current_user %>
+  <%= link_to "Add Todo Item", new_todo_item_url %>
+<% end %>
+
+<ul>
+  <% @user.todo_items.each do |item| %>
+    <li>
+      <%= item.title %>
+      <%= link_to "details", item %>
+    </li>
+  <% end %>
+</ul>
+
+<p> todos go here :-) </p>
