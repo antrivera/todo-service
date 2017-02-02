@@ -2,12 +2,15 @@ class TodoItemsController < ApplicationController
   before_action :require_current_user!
 
   def index
-    if params[:filtered]
-      @todo_items = TodoItem.where(completed: false, user_id: current_user.id)
-      render :index, locals: { filter: false }
+    if params[:search]
+      @todo_items = TodoItem.search(params[:search], current_user)
+      render :index, locals: { filter: true, display_back_link: true }
+    elsif params[:filtered]
+      @todo_items = current_user.todo_items.filtered
+      render :index, locals: { filter: false, display_back_link: false }
     else
       @todo_items = current_user.todo_items
-      render :index, locals: { filter: true }
+      render :index, locals: { filter: true, display_back_link: false }
     end
   end
 

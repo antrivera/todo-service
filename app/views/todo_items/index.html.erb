@@ -7,8 +7,12 @@
 <%= link_to "All Items", todo_items_url %>
 <% end %>
 
-<% todo_items = @todo_items ? @todo_items : current_user.todo_items %>
+<%= form_tag(todo_items_url, method: "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Todo Items" %>
+<%= submit_tag "Search" %>
+<% end %>
 
+<% todo_items = @todo_items ? @todo_items : current_user.todo_items %>
 <ul>
   <% todo_items.each do |item| %>
   <li>
@@ -16,3 +20,7 @@
   </li>
   <% end %>
 </ul>
+
+<% if display_back_link %>
+<%= link_to "Display All", todo_items_url %>
+<% end %>

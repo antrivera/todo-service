@@ -1,9 +1,11 @@
 <h1>Edit Todo Item</h1>
 
 <%= form_for @todo_item, url: todo_item_url do |f| %>
+  <%= f.label "Title: " %>
   <%= f.text_field :title %>
   <%= f.label "Completed: " %>
   <%= f.check_box :completed %>
+  <%= f.label "Details: " %>
   <%= f.text_area :details %>
   <%= f.submit "Update" %>
 <% end %>
