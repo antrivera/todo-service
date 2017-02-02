@@ -1,0 +1,23 @@
+<h1>Todo Item Detail</h1>
+
+<%= link_to "edit", edit_todo_item_url(@todo_item) %>
+<%= link_to "delete", todo_item_url(@todo_item), method: :delete  %>
+
+<table>
+  <tr>
+    <th>Title:</th>
+    <td> <%= @todo_item.title %> </td>
+  </tr>
+  <tr>
+    <th>Completed:</th>
+    <td>
+      <% if @todo_item.completed %>
+        Yes! :)
+      <% else %>
+        No :(
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<%= link_to "All Todo Items", todo_items_url %>

@@ -1,0 +1,17 @@
+<h1>Your Todo List</h1>
+<%= link_to "Add Todo Item", new_todo_item_url %>
+
+<% if filter %>
+<%= link_to "Filter", todo_items_url(filtered: true) %>
+<% else %>
+<%= link_to "All Items", todo_items_url %>
+<% end %>
+
+<ul>
+  <% @todo_items.each do |item| %>
+  <li>
+    <%= item.title %>
+    <%= link_to "details", item %>
+  </li>
+  <% end %>
+</ul>
