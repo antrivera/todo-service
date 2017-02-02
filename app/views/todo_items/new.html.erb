@@ -2,5 +2,6 @@
 
 <%= form_for @todo_item, url: todo_items_url do |f| %>
   <%= f.text_field :title %>
+  <%= f.text_area :details %>
   <%= f.submit "Create" %>
 <% end %>
