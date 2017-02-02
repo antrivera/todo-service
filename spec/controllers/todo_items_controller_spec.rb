@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe TodoItemsController, type: :controller do
+  before(:each) do
+    @current_user = User.create(username: 'tester', password: 'password')
+    login(@current_user)
+  end
+
   describe "GET #new" do
 
     it "renders the new todo_items page" do
@@ -97,6 +102,7 @@ RSpec.describe TodoItemsController, type: :controller do
     before :each do
       @completed_todo_item = FactoryGirl.create(:todo_item, completed: true)
       @incomplete_todo_item = FactoryGirl.create(:todo_item)
+      @current_user.todo_items = [@completed_todo_item, @incomplete_todo_item]
     end
 
     it "renders the todo_item index page" do

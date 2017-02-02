@@ -55,3 +55,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def login(user)
+  request.session[:session_token] = user.session_token
+end
